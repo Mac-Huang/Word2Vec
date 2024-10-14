@@ -1,0 +1,4 @@
+Word: 'two' is similar to: ['four', 'march', 'three', 'seven', 'year', 'six', 'five', 'mm', 'elections', 'h']
+Word: 'man' is similar to: ['created', 'was', 'life', 'once', 'named', 'famous', 'who', 'her', 'money', 'again']
+Word: 'computers' is similar to: ['file', 'programs', 'recent', 'standard', 'access', 'protocol', 'advanced', 'applications', 'games', 'java']
+Word: 'machine' is similar to: ['memory', 'based', 'system', 'such', 'computer', 'itself', 'device', 'code', 'public', 'requires']
