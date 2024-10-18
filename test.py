@@ -1,15 +1,18 @@
 import numpy as np
 from scipy.spatial.distance import cosine
-import pickle
 import torch
-import os
 
 # Load vocabulary mapping
-with open('../outputs/word2id_dict.npy', 'rb') as f:
+with open('./outputs/word2id_dict.npy', 'rb') as f:
     word2idx = np.load(f, allow_pickle=True).item()
 
 # Load embedding weights
-embedding_weights = torch.load('../outputs/model.pth', map_location=torch.device('cpu'), weights_only=True)['in_embedding.weight'].detach().numpy()
+
+# This mehtod should have been removed but I keep it
+# Cuz I cannot train the model again due to the high cost of computing resource
+embedding_weights = torch.load('./outputs/model.pth', map_location=torch.device('cpu'), weights_only=True)['in_embedding.weight'].detach().numpy()
+# # The revised method is this one
+# embedding_weights = torch.load('./outputs/embedding_weights.pth', map_location=torch.device('cpu')).numpy()
 
 # Get idx2word mapping
 idx2word = {idx: word for word, idx in word2idx.items()}
@@ -32,7 +35,7 @@ for word in test_words:
     print(f"Word: '{word}' is similar to: {similar_words}")
 
 # Save results
-results_path = '../outputs/similar_words_results.txt'
+results_path = './outputs/similar_words_results.txt'
 with open(results_path, 'w') as f:
     for word in test_words:
         similar_words = find_nearest(word, embedding_weights, word2idx, idx2word)

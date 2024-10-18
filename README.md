@@ -7,16 +7,13 @@ This project provides an implementation of a Skip-Gram model for learning word e
 ```
 skip_gram_project/
 |-- data/
-|   |-- raw_data.txt               # Raw text data used for training
-|   |-- processed_data.pkl         # Processed version of the raw text data
+|   |-- text8.txt                 # Raw text data used for training
 |
 |-- src/
-|   |-- __init__.py                # Initialization file
-|   |-- build_vocab.py             # Data preprocessing module
-|   |-- skip_gram.py               # Skip-Gram model implementation
-|   |-- train.py                   # Training logic for the Skip-Gram model
-|   |-- utils.py                   # Utility functions for saving results and handling data
-|   |-- evaluate.py                # Evaluation logic for the model
+|   |-- __init__.py               # Initialization file
+|   |-- build_vocab.py            # Data preprocessing module
+|   |-- model.py                  # Skip-Gram model implementation
+|   |-- utils.py                  # Utility functions for saving results and handling data
 |
 |-- outputs/
 |   |-- model.pth                 # Trained model parameters
@@ -27,18 +24,17 @@ skip_gram_project/
 |   |-- word_count.pkl            # Saved word frequency data
 |   |-- hyperparameters.json      # Training hyperparameters and duration
 |
-|-- tests/
-|   |-- test_data_preprocessing.py  # Test code for data preprocessing
-|   |-- test_model.py              # Test code for model functions
-|
+|-- train.py                      # Training logic for the Skip-Gram model
+|-- evaluate.py                   # Evaluation logic for the model
 |-- requirements.txt              # Project dependencies
 |-- README.md                     # Project documentation (this file)
+|-- Skip-gram.pdf                 # The origin paper
 ```
 
 ## Prerequisites
 
 To run this project, you will need:
-- Python 3.7 or higher
+- Python 3.8 or higher
 - PyTorch
 - NumPy
 - Matplotlib
@@ -73,9 +69,17 @@ The `utils.py` script includes helper functions that save the training results, 
 You can evaluate the trained embeddings using `evaluate.py`. The evaluation script tests the quality of the word embeddings by measuring similarity on predefined word pairs or by visualizing using dimensionality reduction techniques like PCA or t-SNE.
 
 ## Visualizations
-Loss curves are saved as images in the `outputs/` folder:
+Images are saved in the `outputs/` folder:
 - `loss_history.png`: Shows the average loss per epoch.
 - `batch_loss_history.png`: Shows the loss per batch during training.
+- `word_frequency.jpg`: Shows the histogram of word frequency.
+
+![Average Loss per Epoch](./outputs/loss_history.png)
+
+![Loss per Batch](./outputs/batch_loss_history.png)
+
+![Word Frequency Histogram](./outputs/word_frequency.jpg)
+
 
 These visualizations help you understand the model's convergence behavior and training dynamics.
 

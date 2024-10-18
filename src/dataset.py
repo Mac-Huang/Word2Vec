@@ -1,12 +1,14 @@
 import torch
 import torch.utils.data as tud
 from typing import List, Dict
-
+from build_vocab import Vocabulary
 
 class EmbeddingDataset(tud.Dataset):
     def __init__(self, text: List[str], word2idx: Dict[str, int], word_freqs: List[float], window_size: int, negative_sample: int):
         super(EmbeddingDataset, self).__init__()
-        self.text_encoded = [word2idx.get(word, word2idx['<UNK>']) for word in text]
+        # Adds a new word to the vocabulary if there is space available.
+        # It could be more dynamic.
+        self.text_encoded = [word2idx.get(word, Vocabulary.add_word(word)) for word in text]
         self.text_encoded = torch.LongTensor(self.text_encoded)
         self.word2idx = word2idx
         word_freqs_list = [word_freqs.get(word, 0.0) for word in word2idx.keys()]
